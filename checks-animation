@@ -1,0 +1,55 @@
+<style>
+  .status {
+    position: relative;
+    width: 12.9px;
+    height: 12px;
+    opacity: .9;
+    transition: width .18s ease;
+  }
+
+  .status.read {
+    width: 17.2px;
+  }
+
+  .status svg {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 17.2px;
+    height: 12px;
+    transform: translateY(-50%);
+  }
+
+  .status svg path {
+    stroke: #fff;
+  }
+
+  .status .p2 {
+    opacity: 0;
+    transition: opacity .18s ease;
+  }
+
+  .status.read .p2 {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  function createStatusIcon(read = false) {
+    const status = document.createElement('span');
+    status.className = 'status' + (read ? ' read' : '');
+    status.innerHTML = `
+      <svg viewBox="0 0 20 14">
+        <path class="p1" d="M1.6 7.5 6.1 12 13.6 2" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="p2" d="M10.5 12 18 2" fill="none" stroke-width="2" stroke-linecap="round"/>
+      </svg>`;
+    return status;
+  }
+
+  function markRead(statusEl) {
+    statusEl.classList.add('read');
+  }
+
+  // пример: container.appendChild(createStatusIcon());
+  // затем при прочтении: markRead(statusEl);
+</script>
